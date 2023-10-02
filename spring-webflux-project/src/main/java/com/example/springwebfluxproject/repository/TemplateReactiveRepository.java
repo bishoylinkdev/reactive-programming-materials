@@ -5,9 +5,9 @@ import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 
-public interface TemplateReactiveRepository extends ReactiveCrudRepository<TemplateRecord, String> {
+public interface TemplateReactiveRepository extends ReactiveCrudRepository<TemplateRecord, Integer> {
 
-    @Query(value = "select pg_sleep(:seconds);")
-    Mono<String> customQuery(Integer seconds);
+    @Query(value = "select * , pg_sleep(:seconds) from template where id = :templateId;")
+    Mono<TemplateRecord> customQuery(Integer seconds, Integer templateId);
 
 }

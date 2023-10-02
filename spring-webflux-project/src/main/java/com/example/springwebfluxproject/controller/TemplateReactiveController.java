@@ -28,8 +28,27 @@ public class TemplateReactiveController {
         return ResponseEntity.ok(templateMono.map(templateMapper::templateToDto));
     }
 
-    @GetMapping
-    public void customQuery() {
-        templateService.customQuery();
+    @GetMapping("/{templateId}")
+    public ResponseEntity<Mono<TemplateDto>> getTemplate(@PathVariable Integer templateId) {
+        Mono<Template> templateMono = templateService.getTemplate(templateId);
+        return ResponseEntity.ok(templateMono.map(templateMapper::templateToDto));
+    }
+
+    @GetMapping("/customQuery")
+    public ResponseEntity<Mono<TemplateDto>> customQuery() {
+        Mono<Template> templateMono = templateService.customQuery();
+        Mono<TemplateDto> templateDtoMono = templateMono.map(templateMapper::templateToDto);
+        return ResponseEntity.ok(Mono.just(new TemplateDto()));
+    }
+
+    @GetMapping("/backpressure")
+    public Mono<String> backPressure() {
+        templateService.backPressure();
+        return Mono.just("");
+    }
+
+    @GetMapping("/wrapBlockingCode")
+    public void wrapBlockingCode() {
+        templateService.wrapBlockingCode();
     }
 }

@@ -4,7 +4,7 @@ spring:
     url: r2dbc:postgresql://localhost:5432/practice-reactive-spring
     username: postgres
     password: root
-  jpa:
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create-drop
+
+#logging:
+#  level:
+#    io.r2dbc.postgresql.QUERY: DEBUG

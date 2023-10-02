@@ -14,4 +14,13 @@ public class TemplateRecord {
     private Integer id;
     private String name;
     private String description;
+
+    @Override
+    public String toString() {
+        return "TemplateRecord{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
