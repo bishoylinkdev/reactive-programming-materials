@@ -1,0 +1,10 @@
+spring:
+  r2dbc:
+    enabled: true
+    url: r2dbc:postgresql://localhost:5432/practice-reactive-spring
+    username: postgres
+    password: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
